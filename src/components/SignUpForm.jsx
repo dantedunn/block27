@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function SignUpForm() {
+
+function SignUpForm({setToken}) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -23,6 +24,7 @@ function SignUpForm() {
       ); 
       const data = await response.json()
       console.log(data)
+      setToken(data.token)
 
     } catch (error) {
       setError(error.message)
@@ -33,7 +35,9 @@ function SignUpForm() {
     //Return needs a parent of an h2/form like div. HTML element as a parent...
     <div>
       <h2>"Sign Up!"</h2>
-      {}
+      {
+<p>{setToken}</p>
+      }
       <form
         onSubmit={(e) => {
           handleSubmit(e);
